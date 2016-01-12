@@ -1,8 +1,17 @@
 package com.paul.ctcalculator.arithmetic;
 
 /**
- * This interface defines the expression
+ * This abstract defines the binary expression
  */
-public interface Expression {
-    int getValue();
+public abstract class Expression implements iExpression {
+
+    protected iExpression Left;
+    protected iExpression Right;
+
+    public Expression(iExpression left, iExpression right)
+    {
+        Left = left;
+        Right = right;
+    }
+
 }

@@ -12,7 +12,7 @@ public class IdentifierTest {
     @Test
     public void testIdentifier()
     {
-        Expression e = new Identifier(new Variable("a"), new Constant(10));
+        iExpression e = new Identifier(new Variable("a"), new Constant(10));
         assertEquals(0, e.getValue());
 
         e = new Variable("a");
@@ -22,7 +22,7 @@ public class IdentifierTest {
     @Test
     public void testIdentifierWithLongVariable()
     {
-        Expression e = new Identifier(new Variable("abc"), new Constant(+10));
+        iExpression e = new Identifier(new Variable("abc"), new Constant(+10));
         assertEquals(0, e.getValue());
 
         e = new Variable("abc");
@@ -32,10 +32,10 @@ public class IdentifierTest {
     @Test
     public void testIdentifierWithNegativeNumber()
     {
-        Expression e = new Identifier(new Variable("abc"), new Constant(-98));
+        iExpression e = new Identifier(new Variable("HellOW"), new Constant(-98));
         assertEquals(0, e.getValue());
 
-        e = new Variable("abc");
+        e = new Variable("HellOW");
         assertEquals(-98, e.getValue());
     }
 }

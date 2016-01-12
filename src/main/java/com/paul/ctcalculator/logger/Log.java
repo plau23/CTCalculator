@@ -16,7 +16,7 @@ public class Log {
     public static final int INFO = 1;
     public static final int ERROR = 2;
 
-    private static int level = 0;
+    private static int level = DEBUG;
 
     private static Log instance;
 
@@ -27,7 +27,7 @@ public class Log {
         if (instance == null)
         {
             instance = new Log();
-            instance.SetDebugLevel(0);
+            instance.SetDebugLevel(DEBUG);
         }
 
         return instance;

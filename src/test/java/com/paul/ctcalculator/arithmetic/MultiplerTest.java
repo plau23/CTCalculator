@@ -14,10 +14,31 @@ public class MultiplerTest {
     {
         int testValueA = 6;
         int testValueB = 2;
-        Expression left = new Constant(testValueA);
-        Expression right = new Constant(testValueB);
-        Expression e = new Multipler(left, right);
+        iExpression left = new Constant(testValueA);
+        iExpression right = new Constant(testValueB);
+        iExpression e = new Multipler(left, right);
         assertEquals((testValueA * testValueB), e.getValue());
     }
 
+    @Test
+    public void testMultipler01()
+    {
+        int testValueA = +99;
+        int testValueB = -12;
+        iExpression left = new Constant(testValueA);
+        iExpression right = new Constant(testValueB);
+        iExpression e = new Multipler(left, right);
+        assertEquals((testValueA * testValueB), e.getValue());
+    }
+
+    @Test(expected = IllegalArgumentException.class )
+    public void testMultiplerException()
+    {
+        int testValueA = Integer.MAX_VALUE;
+        int testValueB = 2;
+        iExpression left = new Constant(testValueA);
+        iExpression right = new Constant(testValueB);
+        iExpression e = new Multipler(left, right);
+        assertEquals((testValueA * testValueB), e.getValue());
+    }
 }

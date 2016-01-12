@@ -14,9 +14,9 @@ public class AdderTest {
     {
         int testValueA = 1;
         int testValueB = 4;
-        Expression left = new Constant(testValueA);
-        Expression right = new Constant(testValueB);
-        Expression e = new Adder(left, right);
+        iExpression left = new Constant(testValueA);
+        iExpression right = new Constant(testValueB);
+        iExpression e = new Adder(left, right);
         assertEquals((testValueA + testValueB), e.getValue());
     }
 
@@ -25,9 +25,31 @@ public class AdderTest {
     {
         int testValueA = -11;
         int testValueB = +40;
-        Expression left = new Constant(testValueA);
-        Expression right = new Constant(testValueB);
-        Expression e = new Adder(left, right);
+        iExpression left = new Constant(testValueA);
+        iExpression right = new Constant(testValueB);
+        iExpression e = new Adder(left, right);
+        assertEquals((testValueA + testValueB), e.getValue());
+    }
+
+    @Test(expected = IllegalArgumentException.class )
+    public void testAddComplex1()
+    {
+        int testValueA = 0;
+        int testValueB = Integer.MAX_VALUE;
+        iExpression left = new Constant(testValueA);
+        iExpression right = new Constant(testValueB);
+        iExpression e = new Adder(left, right);
+        assertEquals((testValueA + testValueB), e.getValue());
+    }
+
+    @Test(expected = IllegalArgumentException.class )
+    public void testAddComplex2()
+    {
+        int testValueA = 0;
+        int testValueB = Integer.MIN_VALUE;
+        iExpression left = new Constant(testValueA);
+        iExpression right = new Constant(testValueB);
+        iExpression e = new Adder(left, right);
         assertEquals((testValueA + testValueB), e.getValue());
     }
 }

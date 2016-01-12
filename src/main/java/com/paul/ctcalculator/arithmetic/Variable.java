@@ -7,7 +7,7 @@ import java.util.Map;
  * Created by Paul Lau on 2016-01-11.
  *
  */
-public class Variable implements Expression {
+public class Variable implements iExpression {
 
     private String variable;
     private int value;

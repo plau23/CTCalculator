@@ -12,7 +12,7 @@ public class LetTest {
     @Test
     public void testLet()
     {
-        Expression e = new Let(
+        iExpression e = new Let(
                 new Identifier(new Variable("a"), new Constant(5)),
                 new Adder(new Variable("a"), new Variable("a"))
         );
@@ -22,7 +22,7 @@ public class LetTest {
     @Test
     public void testLetComplex()
     {
-        Expression e = new Let(
+        iExpression e = new Let(
                 new Identifier(new Variable("a"), new Adder(new Constant(10), new Constant(5))),
                 new Adder(new Variable("a"), new Variable("a"))
         );
@@ -32,7 +32,7 @@ public class LetTest {
     @Test
     public void testLetComplex01()
     {
-        Expression e = new Let(
+        iExpression e = new Let(
                 new Identifier(new Variable("a"), new Constant(5)),
                 new Let (
                         new Identifier(new Variable("b"), new Multipler(new Variable("a"), new Constant(10))),
@@ -45,7 +45,7 @@ public class LetTest {
     @Test
     public void testLetComplex02()
     {
-        Expression e = new Let(
+        iExpression e = new Let(
                 new Identifier(
                         new Variable("a"),
                         new Let(

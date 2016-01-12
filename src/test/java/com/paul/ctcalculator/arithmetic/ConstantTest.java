@@ -12,34 +12,34 @@ public class ConstantTest {
     @Test
     public void testConstant()
     {
-        Expression e = new Constant(50);
+        iExpression e = new Constant(50);
         assertEquals(50, e.getValue());
     }
 
     @Test
     public void testConstantPositiveNumber()
     {
-        Expression e = new Constant(+50);
+        iExpression e = new Constant(+50);
         assertEquals(50, e.getValue());
     }
 
     @Test
     public void testConstantNegativeNumber()
     {
-        Expression e = new Constant(-134);
+        iExpression e = new Constant(-134);
         assertEquals(-134, e.getValue());
     }
 
-    @Test(expected = ArithmeticException.class )
+    @Test(expected = IllegalArgumentException.class )
     public void testConstantExceptionCase1()
     {
-        Expression e = new Constant(Integer.MAX_VALUE);
+        iExpression e = new Constant(Integer.MAX_VALUE);
     }
 
-    @Test(expected = ArithmeticException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void testConstantExceptionCase2()
     {
-        Expression e = new Constant(Integer.MIN_VALUE);
+        iExpression e = new Constant(Integer.MIN_VALUE);
     }
 
 }

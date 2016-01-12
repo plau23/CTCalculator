@@ -3,9 +3,9 @@ package com.paul.ctcalculator.arithmetic;
 /**
  * This class defines the binary expression
  */
-public class Let extends BinaryExpression {
+public class Let extends Expression {
 
-    public Let(Expression left, Expression right) {
+    public Let(iExpression left, iExpression right) {
         super(left, right);
     }
 

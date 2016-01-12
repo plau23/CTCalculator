@@ -3,9 +3,9 @@ package com.paul.ctcalculator.arithmetic;
 /**
  * This class defines the subtract expression
  */
-public class Subtracter extends BinaryExpression {
+public class Subtracter extends Expression {
 
-    public Subtracter(Expression left, Expression right) {
+    public Subtracter(iExpression left, iExpression right) {
         super(left, right);
     }
 

@@ -14,9 +14,31 @@ public class DividerTest {
     {
         int testValueA = 6;
         int testValueB = 2;
-        Expression left = new Constant(testValueA);
-        Expression right = new Constant(testValueB);
-        Expression e = new Divider(left, right);
+        iExpression left = new Constant(testValueA);
+        iExpression right = new Constant(testValueB);
+        iExpression e = new Divider(left, right);
+        assertEquals((testValueA / testValueB), e.getValue());
+    }
+
+    @Test
+    public void testDivider1()
+    {
+        int testValueA = 0;
+        int testValueB = 99;
+        iExpression left = new Constant(testValueA);
+        iExpression right = new Constant(testValueB);
+        iExpression e = new Divider(left, right);
+        assertEquals((testValueA / testValueB), e.getValue());
+    }
+
+    @Test(expected = ArithmeticException.class )
+    public void testDividerException()
+    {
+        int testValueA = 12;
+        int testValueB = 0;
+        iExpression left = new Constant(testValueA);
+        iExpression right = new Constant(testValueB);
+        iExpression e = new Divider(left, right);
         assertEquals((testValueA / testValueB), e.getValue());
     }
 

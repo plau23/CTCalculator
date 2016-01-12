@@ -12,7 +12,7 @@ public class VariableTest {
     @Test
     public void testVariable()
     {
-        Expression e = new Variable("abcString");
+        iExpression e = new Variable("abcString");
         assertEquals(0, e.getValue());
     }
 

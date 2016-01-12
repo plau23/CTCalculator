@@ -3,9 +3,9 @@ package com.paul.ctcalculator.arithmetic;
 /**
  * This class defines the multiple expression
  */
-public class Multipler extends BinaryExpression {
+public class Multipler extends Expression {
 
-    public Multipler(Expression left, Expression right) {
+    public Multipler(iExpression left, iExpression right) {
         super(left, right);
     }
 

@@ -3,9 +3,9 @@ package com.paul.ctcalculator.arithmetic;
 /**
  * This class defines the identify expression
  */
-public class Identifier extends BinaryExpression {
+public class Identifier extends Expression {
 
-    public Identifier(Variable left, Expression right) {
+    public Identifier(Variable left, iExpression right) {
         super(left, right);
 
         // Assigns the value to the parameter

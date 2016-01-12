@@ -20,13 +20,16 @@ public class Evaluator {
 
     private static final Log log = Log.getInstance();
 
+    public enum HasThreeExpressions { Yes, No };
+
+
     private Evaluator(){};
 
     // Decode the given string and convert into an expression accordingly
     // Example:
     // IN: "add(expr1, expr2)"
     // OUT: new Adder(expr1, expr2)
-    public static Expression Evaluate(final String content)
+    public static iExpression Evaluate(final String content)
     {
         try {
 
@@ -37,7 +40,7 @@ public class Evaluator {
                 return new Constant(Integer.parseInt(content));
             }
 
-            // Find 2 expressions from the content
+            // Find left and right expressions from the content
             String[] parms = RetrieveParameters(content);
 
             if (content.startsWith(Operation.add.name())) {
@@ -55,7 +58,6 @@ public class Evaluator {
             if (content.startsWith(Operation.div.name())) {
                 return new Divider(Evaluate(parms[0]), Evaluate(parms[1]));
             }
-
 
             if (content.startsWith(Operation.let.name())) {
                 // Find 1 identifier and 2 expressions from the content
@@ -84,7 +86,7 @@ public class Evaluator {
         final int openBracket = content.indexOf(OPEN_BRACKET);
         final int closeBracket = content.lastIndexOf(CLOSE_BRACKET);
         final int firstComma = content.indexOf(COMMA);
-        final int commaBetweenTwoExpressions = FindCommaPositionBetweenExpressions(content, true);
+        final int commaBetweenTwoExpressions = FindCommaPositionBetweenExpressions(content, HasThreeExpressions.Yes);
 
         // Find the identifier
         expr[0] = content.substring(openBracket + 1, firstComma);
@@ -99,7 +101,7 @@ public class Evaluator {
     }
 
 
-    // Returns 2 expressions from the content
+    // Returns left and right expressions from the content
     //
     // Example:
     // IN: "add(2,sub(10,5))"
@@ -110,7 +112,7 @@ public class Evaluator {
 
         final int openBracket = content.indexOf(OPEN_BRACKET);
         final int closeBracket = content.lastIndexOf(CLOSE_BRACKET);
-        final int commaBetweenTwoExpressions = FindCommaPositionBetweenExpressions(content, false);
+        final int commaBetweenTwoExpressions = FindCommaPositionBetweenExpressions(content, HasThreeExpressions.No);
         log.Debug("CONTENT:" + content + ", [(]:" + openBracket + ", [,]:" + commaBetweenTwoExpressions + ", [)]:" + closeBracket);
 
         // Find 2 expressions
@@ -130,7 +132,7 @@ public class Evaluator {
     //
     // IN: let(a,5,add(a,a))
     // OUT: 7
-    public static int FindCommaPositionBetweenExpressions(final String content, final boolean hasThreeExpressions)
+    public static int FindCommaPositionBetweenExpressions(final String content, HasThreeExpressions threeExpressions)
     {
         if ((content == null) ||(content.length() == 0))
             return 0;
@@ -142,7 +144,8 @@ public class Evaluator {
         // ex. add(expr1, expr2) - the first expression will be started from the first occurrence of open bracket + 1
         // ex. let(identifier,expr1,expr2) - the first expression will be started from the first occurrence of
         // comma + 1
-        final int firstExpressionPosition = (hasThreeExpressions) ? content.indexOf(COMMA) + 1: content.indexOf(OPEN_BRACKET) + 1;
+        final int firstExpressionPosition = (threeExpressions.equals(HasThreeExpressions.Yes)) ? content.indexOf(COMMA) + 1:
+                content.indexOf(OPEN_BRACKET) + 1;
 
         // Find the comma position between two expressions
         // The comma position should be after the last closing bracket of the first expression
@@ -151,7 +154,7 @@ public class Evaluator {
         for (int i= firstExpressionPosition; i < content.lastIndexOf(CLOSE_BRACKET); i++)
         {
             if (numOfOpenBracket == 0 && content.charAt(i) == COMMA ) {
-                log.Debug("CONTENT:" + content + " WITH 3 EXPRS:" + hasThreeExpressions + ", [,] locates at "+ i);
+                log.Debug("CONTENT:" + content + " WITH 3 EXPRS:" + threeExpressions.name() + ", [,] locates at "+ i);
                 return i;
             }
 

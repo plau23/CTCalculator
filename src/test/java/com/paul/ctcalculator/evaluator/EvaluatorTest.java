@@ -30,19 +30,7 @@ public class EvaluatorTest {
     }
 
     @Test
-    public void testEvaluateAddComplex()
-    {
-        assertEquals(27, Evaluator.Evaluate("add(10,17)").getValue());
-    }
-
-    @Test
     public void testEvaluateAddComplex01()
-    {
-        assertEquals(-5, Evaluator.Evaluate("add(+12,-17)").getValue());
-    }
-
-    @Test
-    public void testEvaluateAddComplex02()
     {
         assertEquals(-384, Evaluator.Evaluate("add(-212,-172)").getValue());
     }
@@ -56,7 +44,7 @@ public class EvaluatorTest {
     @Test
     public void testEvaluateSubtractComplex()
     {
-        assertEquals(13, Evaluator.Evaluate("sub(20,7)").getValue());
+        assertEquals(-123, Evaluator.Evaluate("sub(-123,+0)").getValue());
     }
 
     @Test
@@ -72,21 +60,15 @@ public class EvaluatorTest {
     }
 
     @Test
-    public void testEvaluateMultComplex01()
-    {
-        assertEquals(63, Evaluator.Evaluate("mult(9,7)").getValue());
-    }
-
-    @Test
     public void testEvaluateDiv()
     {
         assertEquals(12, Evaluator.Evaluate("div(132,11)").getValue());
     }
 
-    @Test
+    @Test(expected = ArithmeticException.class )
     public void testEvaluateDivComplex()
     {
-        assertEquals(8, Evaluator.Evaluate("div(56,7)").getValue());
+        assertEquals(8, Evaluator.Evaluate("div(56,0)").getValue());
     }
 
     @Test
@@ -144,13 +126,13 @@ public class EvaluatorTest {
         String test5 = "add(12344,3)";  //9
         String test6 = "add(+344,-91)";  //8
 
-        assertEquals(5, Evaluator.FindCommaPositionBetweenExpressions(test, false));
-        assertEquals(13, Evaluator.FindCommaPositionBetweenExpressions(test1, false));
-        assertEquals(5, Evaluator.FindCommaPositionBetweenExpressions(test2, false));
-        assertEquals(14, Evaluator.FindCommaPositionBetweenExpressions(test3, false));
-        assertEquals(20, Evaluator.FindCommaPositionBetweenExpressions(test4, false));
-        assertEquals(9, Evaluator.FindCommaPositionBetweenExpressions(test5, false));
-        assertEquals(8, Evaluator.FindCommaPositionBetweenExpressions(test6, false));
+        assertEquals(5, Evaluator.FindCommaPositionBetweenExpressions(test, Evaluator.HasThreeExpressions.No));
+        assertEquals(13, Evaluator.FindCommaPositionBetweenExpressions(test1, Evaluator.HasThreeExpressions.No));
+        assertEquals(5, Evaluator.FindCommaPositionBetweenExpressions(test2, Evaluator.HasThreeExpressions.No));
+        assertEquals(14, Evaluator.FindCommaPositionBetweenExpressions(test3, Evaluator.HasThreeExpressions.No));
+        assertEquals(20, Evaluator.FindCommaPositionBetweenExpressions(test4, Evaluator.HasThreeExpressions.No));
+        assertEquals(9, Evaluator.FindCommaPositionBetweenExpressions(test5, Evaluator.HasThreeExpressions.No));
+        assertEquals(8, Evaluator.FindCommaPositionBetweenExpressions(test6, Evaluator.HasThreeExpressions.No));
     }
 
     @Test
@@ -164,12 +146,12 @@ public class EvaluatorTest {
         String test4 = "let(abc,5,add(abc,abc))";
         String test5 = "let(test,+12,add(test,test))";
 
-        assertEquals(7, Evaluator.FindCommaPositionBetweenExpressions(test, true));
-        assertEquals(14, Evaluator.FindCommaPositionBetweenExpressions(test1, true));
-        assertEquals(22, Evaluator.FindCommaPositionBetweenExpressions(test2, true));
-        assertEquals(30, Evaluator.FindCommaPositionBetweenExpressions(test3, true));
-        assertEquals(9, Evaluator.FindCommaPositionBetweenExpressions(test4, true));
-        assertEquals(12, Evaluator.FindCommaPositionBetweenExpressions(test5, true));
+        assertEquals(7, Evaluator.FindCommaPositionBetweenExpressions(test, Evaluator.HasThreeExpressions.Yes));
+        assertEquals(14, Evaluator.FindCommaPositionBetweenExpressions(test1, Evaluator.HasThreeExpressions.Yes));
+        assertEquals(22, Evaluator.FindCommaPositionBetweenExpressions(test2, Evaluator.HasThreeExpressions.Yes));
+        assertEquals(30, Evaluator.FindCommaPositionBetweenExpressions(test3, Evaluator.HasThreeExpressions.Yes));
+        assertEquals(9, Evaluator.FindCommaPositionBetweenExpressions(test4, Evaluator.HasThreeExpressions.Yes));
+        assertEquals(12, Evaluator.FindCommaPositionBetweenExpressions(test5, Evaluator.HasThreeExpressions.Yes));
     }
 
     @Test

@@ -3,9 +3,9 @@ package com.paul.ctcalculator.arithmetic;
 /**
  * This class defines the divide expression
  */
-public class Divider extends BinaryExpression {
+public class Divider extends Expression {
 
-    public Divider(Expression left, Expression right) {
+    public Divider(iExpression left, iExpression right) {
         super(left, right);
     }
 

@@ -14,10 +14,31 @@ public class SubtracterTest {
     {
         int testValueA = 6;
         int testValueB = 2;
-        Expression left = new Constant(testValueA);
-        Expression right = new Constant(testValueB);
-        Expression e = new Subtracter(left, right);
+        iExpression left = new Constant(testValueA);
+        iExpression right = new Constant(testValueB);
+        iExpression e = new Subtracter(left, right);
         assertEquals((testValueA - testValueB), e.getValue(), 0.0);
     }
 
+    @Test
+    public void testSubtract1()
+    {
+        int testValueA = +92;
+        int testValueB = -100;
+        iExpression left = new Constant(testValueA);
+        iExpression right = new Constant(testValueB);
+        iExpression e = new Subtracter(left, right);
+        assertEquals((testValueA - testValueB), e.getValue(), 0.0);
+    }
+
+    @Test
+    public void testSubtract2()
+    {
+        int testValueA = -0;
+        int testValueB = +7623;
+        iExpression left = new Constant(testValueA);
+        iExpression right = new Constant(testValueB);
+        iExpression e = new Subtracter(left, right);
+        assertEquals((testValueA - testValueB), e.getValue(), 0.0);
+    }
 }

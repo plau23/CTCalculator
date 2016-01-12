@@ -6,7 +6,7 @@ import com.paul.ctcalculator.logger.Log;
  * This class defines the constant
  *
  */
-public class Constant implements Expression {
+public class Constant implements iExpression {
 
     private int value;
 
@@ -17,7 +17,7 @@ public class Constant implements Expression {
         if (Integer.MIN_VALUE >= value || value >=  Integer.MAX_VALUE)
         {
             Log.getInstance().Error("Integer Overflow");
-            throw new ArithmeticException();
+            throw new IllegalArgumentException();
         }
 
         this.value = value;
