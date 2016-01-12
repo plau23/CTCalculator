@@ -3,3 +3,6 @@ language: java
 branches:
     only:
     - master
+
+after_script:
+    - test -f ./build/libs/CTCalculator-1.0.jar
