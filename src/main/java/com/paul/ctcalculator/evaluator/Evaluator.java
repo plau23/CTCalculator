@@ -30,15 +30,10 @@ public class Evaluator {
     {
         try {
 
-            // CHECK: put retrieveparameers ... here
-            // exception from content.matches[0-9]
-
-
             if (content.matches("[a-zA-z]+")) {
                 return new Variable(content);}
 
-            // *** need to handle -123 or +123 /d
-            if (content.matches("[0-9]+")) {
+            if (content.matches("[+-]?(?<!\\.)\\b[0-9]+\\b(?!\\.[0-9])")) {
                 return new Constant(Integer.parseInt(content));
             }
 

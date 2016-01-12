@@ -5,8 +5,6 @@ import com.paul.ctcalculator.logger.Log;
 
 /**
  *
- * com.paul.coverity.calculator
- *
  * This class is designed to be a simple command-line calculator.
  * It handles add, sub, mult and div arithmetic functions and each one take 2 arbitrary expressions.
  * The "let" operator for assigning values to variables

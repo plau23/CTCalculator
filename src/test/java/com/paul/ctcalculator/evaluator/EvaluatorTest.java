@@ -36,6 +36,18 @@ public class EvaluatorTest {
     }
 
     @Test
+    public void testEvaluateAddComplex01()
+    {
+        assertEquals(-5, Evaluator.Evaluate("add(+12,-17)").getValue());
+    }
+
+    @Test
+    public void testEvaluateAddComplex02()
+    {
+        assertEquals(-384, Evaluator.Evaluate("add(-212,-172)").getValue());
+    }
+
+    @Test
     public void testEvaluateSubtract()
     {
         assertEquals(4, Evaluator.Evaluate("sub(13,9)").getValue());
@@ -55,6 +67,12 @@ public class EvaluatorTest {
 
     @Test
     public void testEvaluateMultComplex()
+    {
+        assertEquals(207, Evaluator.Evaluate("mult(-9,-23)").getValue());
+    }
+
+    @Test
+    public void testEvaluateMultComplex01()
     {
         assertEquals(63, Evaluator.Evaluate("mult(9,7)").getValue());
     }
@@ -96,10 +114,17 @@ public class EvaluatorTest {
     }
 
     @Test
+    public void testEvaluateLetComplex3()
+    {
+        assertEquals(-5.0, Evaluator.Evaluate("let(az,+10,add(az,-15))").getValue(), 0.0);
+    }
+
+    @Test
     public void testEvaluateAddSub()
     {
         assertEquals(18, Evaluator.Evaluate("add(9,sub(12,3))").getValue());
     }
+
 
     @Test
     public void testEvaluateAddSubComplex()
