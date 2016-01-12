@@ -18,3 +18,9 @@ jar {
         attributes 'Main-Class': 'com.paul.ctcalculator.Calculator'
     }
 }
+
+//test {
+//    useJUnit {
+//        includeCategories 'com.paul.ctcalculator.Calculator' 
+//    }
+//}
