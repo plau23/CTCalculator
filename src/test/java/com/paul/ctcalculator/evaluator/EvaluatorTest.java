@@ -197,4 +197,10 @@ public class EvaluatorTest {
         assertEquals("add(+10,-10)", exprs[1]);
         assertEquals("add(test,+123)", exprs[2]);
     }
+
+    @Test
+    public void testRetrieve3Parameters04()
+    {
+        assertEquals(0.0, 2.2, 0);
+    }
 }
